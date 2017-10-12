@@ -77,7 +77,7 @@ export function segsOverlap(seg, otherSegs) {
 }
 
 
-export function sortEvents(evtA, evtB, { startAccessor, endAccessor, allDayAccessor }) {
+export function sortEvents(evtA, evtB, { startAccessor, endAccessor, allDayAccessor, sortBy = () => {} }) {
   let startSort = +dates.startOf(get(evtA, startAccessor), 'day') - +dates.startOf(get(evtB, startAccessor), 'day')
 
   let durA = dates.diff(
@@ -93,5 +93,6 @@ export function sortEvents(evtA, evtB, { startAccessor, endAccessor, allDayAcces
   return startSort // sort by start Day first
     || Math.max(durB, 1) - Math.max(durA, 1) // events spanning multiple days go first
     || !!get(evtB, allDayAccessor) - !!get(evtA, allDayAccessor) // then allDay single day events
-    || +get(evtA, startAccessor) - +get(evtB, startAccessor)     // then sort by start time
+    || +get(evtA, startAccessor) - +get(evtB, startAccessor) // then sort by start time
+    || sortBy(evtA, evtB) // then pass in sort function
 }

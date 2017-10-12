@@ -49,6 +49,8 @@ let propTypes = {
   startAccessor: accessor.isRequired,
   endAccessor: accessor.isRequired,
 
+  sortBy: PropTypes.func,
+
   selected: PropTypes.object,
   selectable: PropTypes.oneOf([true, false, 'ignoreEvents']),
   longPressThreshold: PropTypes.number,
