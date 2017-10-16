@@ -1,4 +1,5 @@
 import findIndex from 'lodash/findIndex';
+import noop from 'lodash/noop';
 import dates from './dates';
 import { accessor as get } from './accessors';
 
@@ -77,7 +78,7 @@ export function segsOverlap(seg, otherSegs) {
 }
 
 
-export function sortEvents(evtA, evtB, { startAccessor, endAccessor, allDayAccessor, sortBy = () => {} }) {
+export function sortEvents(evtA, evtB, { startAccessor, endAccessor, allDayAccessor, sortBy = noop, isSpecialEvent }) {
   let startSort = +dates.startOf(get(evtA, startAccessor), 'day') - +dates.startOf(get(evtB, startAccessor), 'day')
 
   let durA = dates.diff(
@@ -90,6 +91,9 @@ export function sortEvents(evtA, evtB, { startAccessor, endAccessor, allDayAcces
       , dates.ceil(get(evtB, endAccessor), 'day')
       , 'day');
 
+  if (isSpecialEvent && (isSpecialEvent(evtA) || isSpecialEvent(evtB))) {
+    return isSpecialEvent(evtA) < isSpecialEvent(evtB)
+  }
   return startSort // sort by start Day first
     || Math.max(durB, 1) - Math.max(durA, 1) // events spanning multiple days go first
     || !!get(evtB, allDayAccessor) - !!get(evtA, allDayAccessor) // then allDay single day events
