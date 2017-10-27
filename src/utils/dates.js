@@ -155,6 +155,11 @@ let dates = {
 
   tomorrow() {
     return dates.add(dates.startOf(new Date(), 'day'), 1, 'day')
+  },
+
+  isWeekend(date) {
+    const day = date.getDay()
+    return day === 6 || day === 0
   }
 }
 
