@@ -191,31 +191,33 @@ class DateContentRow extends React.Component {
               {range.map(this.renderHeadingCell)}
             </div>
           )}
-          {levels.map((segs, idx) =>
-            <EventRow
-              {...props}
-              key={idx}
-              start={first}
-              end={last}
-              segments={segs}
-              slots={range.length}
-              eventComponent={eventComponent}
-              eventWrapperComponent={eventWrapperComponent}
-              startAccessor={startAccessor}
-              endAccessor={endAccessor}
-            />
-          )}
-          {!!extra.length && (
-            <EventEndingRow
-              {...props}
-              start={first}
-              end={last}
-              segments={extra}
-              onShowMore={this.handleShowMore}
-              eventComponent={eventComponent}
-              eventWrapperComponent={eventWrapperComponent}
-            />
-          )}
+          <div className='rbc-events-wrapper'>
+            {levels.map((segs, idx) =>
+              <EventRow
+                {...props}
+                key={idx}
+                start={first}
+                end={last}
+                segments={segs}
+                slots={range.length}
+                eventComponent={eventComponent}
+                eventWrapperComponent={eventWrapperComponent}
+                startAccessor={startAccessor}
+                endAccessor={endAccessor}
+              />
+            )}
+            {!!extra.length && (
+              <EventEndingRow
+                {...props}
+                start={first}
+                end={last}
+                segments={extra}
+                onShowMore={this.handleShowMore}
+                eventComponent={eventComponent}
+                eventWrapperComponent={eventWrapperComponent}
+              />
+            )}
+          </div>
         </div>
       </div>
     );
