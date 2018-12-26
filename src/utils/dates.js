@@ -152,6 +152,11 @@ let dates = {
   tomorrow() {
     return dates.add(dates.startOf(new Date(), 'day'), 1, 'day')
   },
+
+  isWeekend(date) {
+    var day = date.getDay()
+    return day === 6 || day === 0
+  },
 }
 
 export default dates

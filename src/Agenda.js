@@ -36,11 +36,17 @@ class Agenda extends React.Component {
   }
 
   render() {
-    let { length, date, events, accessors, localizer } = this.props
+    let { length, date, events, accessors, localizer, components } = this.props
     let { messages } = localizer
     let end = dates.add(date, length, 'day')
 
     let range = dates.range(date, end, 'day')
+
+    const WrapperComponent = components.wrapper
+
+    if (WrapperComponent) {
+      return <WrapperComponent date={date} events={events} />
+    }
 
     events = events.filter(event => inRange(event, date, end, accessors))
 

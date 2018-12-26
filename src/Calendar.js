@@ -63,6 +63,12 @@ class Calendar extends React.Component {
     elementProps: PropTypes.object,
 
     /**
+     * Props passed to main toolbar `<div>`.
+     *
+     */
+    toolbarProps: PropTypes.object,
+
+    /**
      * The current date value of the calendar. Determines the visible view range.
      * If `date` is omitted then the result of `getNow` is used; otherwise the
      * current date is used.
@@ -673,6 +679,7 @@ class Calendar extends React.Component {
       toolbar: elementType,
 
       agenda: PropTypes.shape({
+        wrapper: elementType,
         date: elementType,
         time: elementType,
         event: elementType,
@@ -843,6 +850,7 @@ class Calendar extends React.Component {
       style,
       className,
       elementProps,
+      toolbarProps,
       date: current,
       getNow,
       length,
@@ -883,6 +891,7 @@ class Calendar extends React.Component {
             onView={this.handleViewChange}
             onNavigate={this.handleNavigate}
             localizer={localizer}
+            {...toolbarProps}
           />
         )}
         <View
@@ -952,7 +961,11 @@ class Calendar extends React.Component {
     }
 
     let views = this.getViews()
-    this.handleRangeChange(this.props.date || this.props.getNow(), views[view], view)
+    this.handleRangeChange(
+      this.props.date || this.props.getNow(),
+      views[view],
+      view
+    )
   }
 
   handleSelectEvent = (...args) => {
