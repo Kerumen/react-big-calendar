@@ -77,7 +77,7 @@ export function segsOverlap(seg, otherSegs) {
 export function sortEvents(
   evtA,
   evtB,
-  { start, end, sortBy, allDay, isSpecialEvent = () => true }
+  { start, end, sortBy, allDay, isSpecialEvent = () => false }
 ) {
   let startSort =
     +dates.startOf(start(evtA), 'day') - +dates.startOf(start(evtB), 'day')
