@@ -745,6 +745,7 @@ class Calendar extends React.Component {
     getNow: () => new Date(),
 
     isSpecialEvent: () => false,
+    sortBy: () => false,
   }
 
   constructor(...args) {
@@ -767,6 +768,7 @@ class Calendar extends React.Component {
     resourceIdAccessor,
     resourceTitleAccessor,
     isSpecialEvent,
+    sortBy,
     eventPropGetter,
     slotPropGetter,
     dayPropGetter,
@@ -805,6 +807,7 @@ class Calendar extends React.Component {
         tooltip: wrapAccessor(tooltipAccessor),
         title: wrapAccessor(titleAccessor),
         isSpecialEvent,
+        sortBy,
         resource: wrapAccessor(resourceAccessor),
         resourceId: wrapAccessor(resourceIdAccessor),
         resourceTitle: wrapAccessor(resourceTitleAccessor),
