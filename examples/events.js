@@ -30,6 +30,7 @@ export default [
   {
     id: 4,
     title: 'Some Event',
+    type: 'birthday',
     start: new Date(2015, 3, 9, 0, 0, 0),
     end: new Date(2015, 3, 10, 0, 0, 0),
   },

@@ -743,6 +743,8 @@ class Calendar extends React.Component {
 
     longPressThreshold: 250,
     getNow: () => new Date(),
+
+    isSpecialEvent: () => false,
   }
 
   constructor(...args) {
@@ -764,8 +766,7 @@ class Calendar extends React.Component {
     resourceAccessor,
     resourceIdAccessor,
     resourceTitleAccessor,
-    sortByAccessor,
-    isSpecialEventAccessor,
+    isSpecialEvent,
     eventPropGetter,
     slotPropGetter,
     dayPropGetter,
@@ -802,9 +803,8 @@ class Calendar extends React.Component {
         end: wrapAccessor(endAccessor),
         allDay: wrapAccessor(allDayAccessor),
         tooltip: wrapAccessor(tooltipAccessor),
-        sortBy: wrapAccessor(sortByAccessor),
         title: wrapAccessor(titleAccessor),
-        isSpecialEvent: wrapAccessor(isSpecialEventAccessor),
+        isSpecialEvent,
         resource: wrapAccessor(resourceAccessor),
         resourceId: wrapAccessor(resourceIdAccessor),
         resourceTitle: wrapAccessor(resourceTitleAccessor),

@@ -10,6 +10,9 @@ import customComponents from './helpers/customComponents'
 
 import { events, Calendar } from './helpers'
 
+const isSpecialDay = event =>
+  ['birthday', 'public-holiday'].includes(event.type)
+
 storiesOf('Big Calendar', module)
   .add('demo', () => (
     <Calendar
@@ -17,6 +20,14 @@ storiesOf('Big Calendar', module)
       events={demoEvents}
       onSelectEvent={action('event selected')}
       defaultDate={new Date(2015, 3, 1)}
+    />
+  ))
+  .add('with sortBy accessor', () => (
+    <Calendar
+      events={demoEvents}
+      onSelectEvent={action('event selected')}
+      defaultDate={new Date(2015, 3, 1)}
+      isSpecialEvent={isSpecialDay}
     />
   ))
   .add('default view', () => {
