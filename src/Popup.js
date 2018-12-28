@@ -75,6 +75,16 @@ class Popup extends React.Component {
       minWidth: width + width / 2,
     }
 
+    if (components.popup) {
+      const Popin = components.popup
+
+      return (
+        <div ref="root" style={style} className="rbc-overlay">
+          <Popin events={events} date={slotStart} />
+        </div>
+      )
+    }
+
     return (
       <div ref="root" style={style} className="rbc-overlay">
         <div className="rbc-overlay-header">
